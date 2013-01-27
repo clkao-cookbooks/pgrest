@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "python": ">= 0.0.0",
+    "postgresql": ">= 0.0.0"
+  },
+  "name": "pgrest",
+  "maintainer_email": "clkao@clkao.org",
+  "attributes": {
+  },
+  "license": "Apache 2.0",
+  "suggestions": {
+  },
+  "platforms": {
+  },
+  "maintainer": "clkao",
+  "long_description": "",
+  "version": "0.0.1",
+  "recommendations": {
+  },
+  "recipes": {
+  },
+  "groupings": {
+  },
+  "conflicting": {
+  },
+  "replacing": {
+  },
+  "description": "Set up pgrest system",
+  "providing": {
+  }
+}
