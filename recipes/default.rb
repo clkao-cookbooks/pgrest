@@ -16,5 +16,5 @@ end
 
 execute "install pgrest" do
   command "npm i -g pgrest"
-  not_if "test -e /usr/local/bin/pgrest"
+  not_if "test -e /usr/bin/pgrest"
 end
