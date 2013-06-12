@@ -14,3 +14,7 @@ execute "install-plv8" do
   not_if "test -e /usr/share/postgresql/#{ node['postgresql']['version'] }/extension/plv8.control"
 end
 
+execute "install pgrest" do
+  command "npm i -g pgrest"
+  not_if "test -e /usr/local/bin/pgrest"
+end
