@@ -1,23 +1,13 @@
-include_recipe 'postgresql::server'
+
+pg_version = node['postgresql']['version'] || '9.2'
 
 node.override['postgresql']['config']['local_preload_libraries'] = 'pgextwlist.so'
 node.override['postgresql']['config']['extwlist.extensions'] = 'plv8'
+node.override['postgresql']['server']['packages'] = ["postgresql-#{ pg_version}", "postgresql-#{ pg_version }-plv8"]
 
-package "python-pip" do
-  action :install
-end
-
-execute "install-pgxnclient" do
-  command "pip install pgxnclient"
-  not_if "test -e /usr/local/bin/pgxn"
-end
+include_recipe 'postgresql::server'
 
 package "libv8-dev"
-
-execute "install-plv8" do
-  command "pgxn install plv8"
-  not_if "test -e /usr/share/postgresql/#{ node['postgresql']['version'] }/extension/plv8.control"
-end
 
 execute "install pgrest" do
   command "npm i -g pgrest"

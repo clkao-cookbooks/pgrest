@@ -12,21 +12,13 @@ I use the following role file:
     "override_attributes": {
         "postgresql": {
             "version": "9.2",
-            "enable_pitti_ppa": true,
-            "client": {
-                "packages": ["postgresql-client-9.2", "postgresql-contrib-9.2", "libpq-dev"]
-            },
-            "server": {
-                "packages": ["postgresql-9.2", "postgresql-server-dev-9.2"]
-            },
+            "enable_pgdg_apt": true,
             "password": {
                 "postgres": "default_password"
             }
         }
     },
     "run_list": [
-        "recipe[postgresql::ppa_pitti_postgresql]",
-        "recipe[postgresql::server]",
         "recipe[pgrest]"
     ]
 }
