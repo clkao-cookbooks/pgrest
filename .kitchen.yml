@@ -1,0 +1,29 @@
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+
+platforms:
+- name: ubuntu-12.04
+  driver_config:
+    box: opscode-ubuntu-12.04
+    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+  run_list: []
+
+suites:
+- name: default
+  run_list:
+  - recipe[postgresql::ruby] # for testing
+  - recipe[pgrest]
+  - recipe[minitest-handler]
+  attributes:
+    pgrest:
+      dev: true
+    postgresql:
+      enable_pgdg_apt: true
+      version: 9.2
+      password:
+        postgres: "iloverandompasswordsbutthiswilldo"
+      config:
+        ssl_cert_file: "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+        ssl_key_file: "/etc/ssl/private/ssl-cert-snakeoil.key"

@@ -1,0 +1,1 @@
+default['pgrest']['dev'] = true
