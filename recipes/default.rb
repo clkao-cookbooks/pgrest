@@ -42,7 +42,7 @@ script "install pgextwlist" do
     mkdir /usr/lib/postgresql/#{ node['postgresql']['version'] }/lib/plugins
     cp -f ./pgextwlist.so /usr/lib/postgresql/#{ node['postgresql']['version'] }/lib/plugins/
   EOH
-  not_if "test -e /usr/share/postgresql/#{ node['postgresql']['version'] }/lib/plugins/pgextwlist.so"
+  not_if "test -e /usr/share/postgresql/#{ node['postgresql']['version'] }/lib/plugins/pgextwlist.so"|| "test e /usr/lib/postgresql/#{ node['postgresql']['version'] }/lib/pgextwlist.so"
 end
 
 # XXX these needs to be set after pgextwlist is installed
