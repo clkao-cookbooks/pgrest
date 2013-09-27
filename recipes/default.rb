@@ -19,7 +19,7 @@ if node['pgrest']['dev']
     cwd "/opt/pgrest"
     command "npm i && npm run prepublish && npm link"
     action :nothing
-    subscribes :run, resources(:git => "/opt/pgrest")
+    subscribes :run, resources(:git => "/opt/pgrest"), :immediately
   end
 
 else
