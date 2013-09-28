@@ -31,13 +31,18 @@ end
 
 # XXX: split to another recipe
 
+git "/root/pgextwlist" do
+  reference "88873dba08db1d7d1f1743345278a58f18769769"
+  repository "git://github.com/dimitri/pgextwlist.git"
+  notifies :run, "script[install pgextwlist]"
+end
+
 script "install pgextwlist" do
   interpreter "bash"
+  action :nothing
   user "root"
-  cwd "/root"
+  cwd "/root/pgextwlist"
   code <<-EOH
-    git clone git://github.com/dimitri/pgextwlist.git
-    cd pgextwlist
     make
     mkdir /usr/lib/postgresql/#{ node['postgresql']['version'] }/lib/plugins
     cp -f ./pgextwlist.so /usr/lib/postgresql/#{ node['postgresql']['version'] }/lib/plugins/
