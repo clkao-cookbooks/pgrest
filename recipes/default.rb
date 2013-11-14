@@ -20,6 +20,8 @@ if node['pgrest']['dev']
     command "npm i && npm run prepublish && npm link"
     action :nothing
     subscribes :run, resources(:git => "/opt/pgrest"), :immediately
+    # for node-pg to be properly built
+    environment ({"SUDO_USER" => "", "SUDO_UID" => ""})
   end
 
 else
